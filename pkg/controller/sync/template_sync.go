@@ -171,15 +171,11 @@ func (r *ReconcilePolicy) Reconcile(request reconcile.Request) (reconcile.Result
 				labels := tObjectUnstructured.GetLabels()
 				if labels == nil {
 					labels = map[string]string{
-						"cluster-name":               instance.GetLabels()[common.ClusterNameLabel],
 						common.ClusterNameLabel:      instance.GetLabels()[common.ClusterNameLabel],
-						"cluster-namespace":          instance.GetLabels()[common.ClusterNamespaceLabel],
 						common.ClusterNamespaceLabel: instance.GetLabels()[common.ClusterNamespaceLabel],
 					}
 				} else {
-					labels["cluster-name"] = instance.GetLabels()[common.ClusterNameLabel]
 					labels[common.ClusterNameLabel] = instance.GetLabels()[common.ClusterNameLabel]
-					labels["cluster-namespace"] = instance.GetLabels()[common.ClusterNamespaceLabel]
 					labels[common.ClusterNamespaceLabel] = instance.GetLabels()[common.ClusterNamespaceLabel]
 				}
 				tObjectUnstructured.SetLabels(labels)
